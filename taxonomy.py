@@ -1,21 +1,3 @@
-None selected
-
-Skip to content
-Using Gmail with screen readers
-Enable desktop notifications for Gmail.
-   OK  No thanks
-5 of 85
-Document from Haripriya R
-Inbox
-
-4MH23IS039 <4mh23is039@gmail.com>
-Attachments
-3:17 PM (1 hour ago)
-to me
-
-taxonomy.py 
- One attachment
-  •  Scanned by Gmail
 TAXONOMY = """
 L1 | L2 | L3
 -----------------------------------
@@ -57,3 +39,4 @@ Utilities | Water | -
 """
 taxonomy.py
 Displaying taxonomy.py.
+
