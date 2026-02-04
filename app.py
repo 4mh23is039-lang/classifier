@@ -7,11 +7,24 @@ st.set_page_config(page_title="PO Category Classifier", layout="centered")
 st.title("PO L1-L2-L3 Classifier")
 st.caption("Classify purchase order descriptions into L1/L2/L3 categories.")
 
+examples = [
+    "Annual maintenance for HVAC systems across HQ campus",
+    "Bulk purchase of laptop docking stations and 24-inch monitors",
+    "Janitorial services for warehouse facilities (night shift)",
+]
+
+st.write("Try an example:")
+example_cols = st.columns(len(examples))
+for idx, (col, example) in enumerate(zip(example_cols, examples)):
+    if col.button(f"Example {idx + 1}"):
+        st.session_state["po_description"] = example
+
 po_description = st.text_area(
     "PO Description",
     height=140,
     help="Include item, service, or materials details for best results.",
     placeholder="e.g., Annual maintenance for HVAC systems across HQ campus",
+    key="po_description",
 )
 supplier = st.text_input(
     "Supplier (optional)",
@@ -52,7 +65,33 @@ if st.button("Classify", disabled=not can_classify):
                     st.write(f"L3: {l3 or '-'}")
             st.subheader("Full JSON")
             st.json(parsed)
+
+            history_entry = {
+                "description": po_description,
+                "supplier": supplier or "-",
+                "result": parsed,
+            }
+            history = st.session_state.get("history", [])
+            history.insert(0, history_entry)
+            st.session_state["history"] = history[:5]
         except Exception:
             st.error("Invalid model response (could not parse JSON).")
             if debug_raw:
                 st.text(result)
+
+if st.session_state.get("history"):
+    st.subheader("Recent Classifications")
+    for item in st.session_state["history"]:
+        st.write(f"Description: {item['description']}")
+        st.write(f"Supplier: {item['supplier']}")
+        st.json(item["result"])
+
+if st.session_state.get("history"):
+    latest = st.session_state["history"][0]["result"]
+    json_blob = json.dumps(latest, indent=2)
+    st.download_button(
+        "Download Latest JSON",
+        data=json_blob,
+        file_name="po_classification.json",
+        mime="application/json",
+    )
