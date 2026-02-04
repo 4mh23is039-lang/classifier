@@ -1,3 +1,5 @@
+from taxonomy import TAXONOMY
+
 SYSTEM_PROMPT = f"""
 You are an enterprise Purchase Order (PO) classification engine.
 
@@ -45,5 +47,6 @@ Output:
   "L3": "Not sure"
 }}
 """
+
 
 
