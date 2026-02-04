@@ -1,4 +1,4 @@
-TAXONOMY = """
+TAXONOMY = f"""
 L1 | L2 | L3
 -----------------------------------
 Banking & Financial | Banking Charges | -
@@ -37,6 +37,7 @@ Unaddressable | Tax | -
 Utilities | Power | -
 Utilities | Water | -
 """
+
 
 
 
