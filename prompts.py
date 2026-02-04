@@ -1,19 +1,3 @@
-Enable desktop notifications for Gmail.
-   OK  No thanks
-3 of 81
-Document from Haripriya R
-Inbox
-
-4MH23IS039 <4mh23is039@gmail.com>
-Attachments
-Tomorrow, 3:17 PM (0 minutes ago)
-to me
-
-prompts.py 
- One attachment
-  •  Scanned by Gmail
-from taxonomy import TAXONOMY
-
 SYSTEM_PROMPT = f"""
 You are an enterprise Purchase Order (PO) classification engine.
 
@@ -61,3 +45,4 @@ Output:
   "L3": "Not sure"
 }}
 """
+
